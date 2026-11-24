@@ -1,0 +1,260 @@
+window	start	text
+0	0:00	The following content is provided under a Creative Commons license. Your support will help MIT OpenCourseWare continue to offer high quality educational resources for
+1	0:10	free. To make a donation or view additional materials from hundreds of MIT courses, visit MIT OpenCourseWare at ocw .mit .edu.
+2	0:20	
+3	0:30	All right, let's begin. So as I mentioned before, this lecture will be recorded for OCW. So again, in future lectures, if you don't want
+4	0:40	to have the back of your head show up, just don't sit in this front area here. So first of all, wow, what a crowd, you guys. We're finally in 26100. 6001 made it
+5	0:50	big, huh? So good afternoon, and welcome to the very first class of 6001 and also 600 this semester. So, my name is Anna Bell,
+6	1:00	first name Anna, last name Bell. I'm a lecturer in the EECS department, and I'll be giving some of the lectures for today along with,
+7	1:10	later on in the term, Professor Eric Grimson, who's sitting right down there. We'll be giving some of the lectures as well. Okay, so today we're going to go over some
+8	1:20	just basic administrative, a little bit of course information, and then we're going to talk a little bit about what is computation. So we'll discuss at a very high level what computers do, just to make sure we're all on the
+9	1:30	same page. And then we're going to dive right into Python basics. We're going to talk a little bit about mathematical operations you can do with Python, and then we're going to talk about Python variables
+10	1:40	and types. So as I mentioned in my introductory email, all the slides in code that I'll talk about during lectures will be up before lecture. So I highly encourage you to download them
+11	1:50	and to have them open. We're going to go through some in -class exercises, which will be available on those slides, and it's fun to do, and
+12	2:00	it's also great if you could take notes on the code just for future reference. It's true.
+13	2:10	This is a really fast -paced course, and we ramp up really quickly. So we do want to position you to succeed in this course. So as I was writing this, I was trying to think about when
+14	2:20	I was first starting the program helped me get through my very first programming course. And this is really like a good list. So the first thing
+15	2:30	was, I just read the p -sets as soon as they came out. Made sure that the terminology kind of just sunk in. And then during lectures, if the lecturer was talking
+16	2:40	about something that suddenly I remembered, oh, I saw that word in the p -set, and I didn't know what it was, well, hey, now I know what it is. So just give it a read. You don't need to start it.
+17	2:50	If you're new to programming, I think the keyword is practice. So it's like math or reading. The more you practice, the better you get at it.
+18	3:00	You're not going to absorb programming by watching me write programs, because I already know how to program. You guys need to practice. So download the code before lecture. Follow along.
+19	3:10	Whatever I type, you guys can type. And I think also one of the big things is if you're new to programming, you're kind of afraid that you're going to break your computer. right? And you can't
+20	3:20	really do that just by running Anaconda and typing in some commands. So don't be afraid to just type some stuff in and see what it does. Worst case,
+21	3:30	you just restart the computer, right? So, yeah. Yeah, so that's probably the big thing right there. I should probably highlight it, but don't be afraid.
+22	3:40	Great, so this is pretty much a roadmap of all of 6001 or 600, as I've just explained it. So there's three big things we want you to get out of
+23	3:50	this course. The first thing is the knowledge of concepts, which is pretty much true of any class that you'll take. The class will teach you something through lectures. Exams
+24	4:00	will test how much you know. This is a class in programming. The other thing we want you to get out of it is programming skills.
+25	4:10	And the last thing, and I think this is what makes this class really great, is we teach you how to solve problems. And we do that through the p -sets. So that's really how I feel the
+26	4:20	roadmap of this course looks like. And underlying all of these is just practice. So you have to just type some stuff away and code a lot.
+27	4:30	And you'll succeed in this course, I think. OK, so what are the things we're going to learn in this class? I feel like the
+28	4:40	things we're going to learn in this class can be divided into basically three different sections. And so the first one is related to these first two items here.
+29	4:50	So it's really about learning how to program. So learning how to program is part of it is figuring out what objects to create. You'll learn about these
+30	5:00	later. How do you represent knowledge with data structures? That's sort of the broad term for that. And then as you're writing programs, programs aren't just linear. Sometimes programs jump
+31	5:10	around. They make decisions. There's some control flow to programs. times, so that's what the second line is going to be about. The second big part of this course
+32	5:20	is a little bit more abstract, and it deals with how do you write good code, good style, code that's readable.
+33	5:30	So when you write code, you want to write it such that you're in a big company, other people will read it, other people will use it, so it has to be readable and understandable by others. So
+34	5:40	to that end, you need to write code that's well -organized, modular, easy to understand. And not only that, not only
+35	5:50	will your code be read by other people, but next year, maybe, you'll take another course, and you'll want to look back at some of the problem sets you wrote in this class. You kind of want to be able to reread your
+36	6:00	code, right? If it's a big mess, you might not be able to understand or re -understand what you were doing. So, writing readable code and organizing code is also a big part.
+37	6:10	And the last section is going to deal with, so the first two are actually part of the programming in introduction to programming in computer
+38	6:20	science and Python. And the last one deals a little bit, deals mostly with the computer science part in introduction to programming in computer science and Python. So we're going to talk
+39	6:30	about, once you've learned how to write programs in Python, how do you compare programs in Python? How do you know that one program is better than the other? How do you know that one program is more efficient
+40	6:40	than the other? How do you know that one algorithm is better than the other? So that's what we're going to talk about in the last part of the course. So
+41	6:50	that's all for the sort of administrative part of the course. So let's start by talking at a high level what does a computer do. So fundamentally,
+42	7:00	it does two things. One, performs calculation, and it performs a lot of calculations, right? Computers these days are really, really fast. A billion
+43	7:10	calculations per second is probably not far off. It performs these calculations, and it has to store them somewhere, right? Stores them in computer memory.
+44	7:20	So a computer also has to remember results. And these days, it's not uncommon to find computers with hundreds of gigabytes of storage. language.
+45	7:30	So the kinds of calculations that computers do, there are two kinds. So one are calculations that are built into the language. So these are the very low level types of calculations,
+46	7:40	things like addition, subtraction, multiplication, and so on. And once you have a language that has these sort of primitive
+47	7:50	calculation types, you as a programmer can put these types together and then define your own calculations. And then you create new types of calculations,
+48	8:00	and the computer will be able to perform those as well. And I think one thing I want to stress, and we're going to come back to this again
+49	8:10	during this entire lecture actually, is computers only know what you tell them. Computers only do what you tell them to do. They're not magical. They
+50	8:20	don't have a mind. They just know how to perform calculations really, really quickly. But you have to tell them what calculations to do,
+51	8:30	okay? Computers don't know anything, all right? We've come to that. So
+52	8:40	let's go into the types of knowledge, okay? The first type of knowledge is declarative knowledge. And those are things like statements of fact,
+53	8:50	okay? And this is where my email came into play. if you read it all the way to the bottom, you would have entered a raffle. So a statement of fact for today's lecture is
+54	9:00	someone will win a prize before class ends. And the prize was a Google Cardboard, Google State -of -the -art virtual reality glasses. And they
+55	9:10	have them right here. Yay. I delivered on my promise. So that's a statement of fact. But
+56	9:20	if you pretend I'm a machine, I don't know anything, except what you tell me. So I know that you tell me the statement.
+57	9:30	I'm like, OK, but how is someone going to win a Google Cardboard before class ends? That's where imperative knowledge comes in. So imperative knowledge is the recipe, or the how to, or the sequence
+58	9:40	of steps. Sorry. That's just my funny for that one. So the sequence of steps is
+59	9:50	imperative knowledge. So if I'm a machine, you need to tell me how someone will win a Google Cardboard before class.
+60	10:00	So if I follow these steps, then technically I should reach a conclusion. So step one, I think we've already done that. Whoever wanted to sign up
+61	10:10	has signed up. So now I'm going to open my IDE. So I'm just basically being a machine and following the steps that you've told me. So the IDE that we're using in this class is called
+62	10:20	Anaconda. Let me just scroll down to the bottom. Hopefully you've installed it in problem set 0. So I've opened my IDE.
+63	10:30	I'm going to follow the next set of instructions. I'm going to choose a random number between the first and the nth responder. Now I'm going to
+64	10:40	actually use Python to do this. And this is also an example of how just like a really simple task in your life You can use computers or programming to do that because if I chose a random number
+65	10:50	I might be biased because for example, I might like the number eight So to choose a random number, I'm going to go and say okay. Where's the list of responders? It starts at 15 actually
+66	11:00	it starts at 16 because that's me Okay, so we're gonna choose a random number between 16 and the end person 266 oh Oh, we
+67	11:10	just got, oh, okay, two, okay, I'm going to cut it off right here, 271. Okay, 16 and 271, perfect, okay.
+68	11:20	So I'm going to choose a random number, so I'm going to go to my ID, and you don't need to know how to do this yet, but by the end of this class you will, so I'm just going to use Python. I'm just going to get the
+69	11:30	random number package that's going to get me a random number, so I'm going to say random .randint, and I'm going to choose a random number between 16 and 272.
+70	11:40	Okay. 75. Okay. Great. So I chose a random number and I'm going to find the number in the responders sheet. What was the number again? Sorry.
+71	11:50	75. Okay. Up we go. There There we go. Lauren Z .O .V.
+72	12:00	Yeah, nice. You're here.
+73	12:10	Awesome. All right. So that's an example of me being a machine, right?
+74	12:20	And also at the same time using Python in just my everyday life, right? Just lecturing, just to find a random number, right? So just try to use Python wherever you
+75	12:30	can, and that just gives you practice. OK, so that was fun, but we're at MIT. We're MIT students, right? And we love
+76	12:40	numbers here at MIT, right? So here's a numerical example that shows the difference between declarative and imperative knowledge. So I want to find the square root of, so an
+77	12:50	example of declarative knowledge is the square root of a number x is y, such that y times y is equal to x. That's just a statement of fact. It's true.
+78	13:00	Imperative not. So computers don't know what to do with that. They don't know what to do with that statement. But computers do know how to follow a recipe.
+79	13:10	So here's a well -known algorithm to find the square root of a number, x. Let's say x is originally 16.
+80	13:20	So, if a computer follows this algorithm, it's going to start with a guess g, let's say 3, right? We're trying to find the square root of 16.
+81	13:30	We're going to calculate g times g is 9, right? And we're going to ask if g times g is close enough to x, then stop and say g is the answer. I'm not really
+82	13:40	happy with 9 being really close to 16, right? So I'm going to say I'm not stopping here. I'm going to keep going, okay? So if it's not close enough, then I'm going to make a new guess by
+83	13:50	averaging g and x over g. So that's x over g here, and that's the average over there. And the new average is going to be my new guess.
+84	14:00	And that's what it says. And then the last step is using the new guess, repeat the process. So then we go back to the beginning
+85	14:10	and repeat the whole process over and over again. And that's what the rest of the rows does. And you keep doing this until you decide that you're close enough.
+86	14:20	So what we saw for the imperative knowledge in the previous numerical example was the recipe for how to find the spirit of x.
+87	14:30	So what were the three parts to the recipe? One was a simple sequence of steps. There were four steps, pretty much. The other was a flow
+88	14:40	of control. So there were parts where we made decisions, right? Are we close enough? There were parts where we repeated some steps. So at the end, we said,
+89	14:50	repeat steps one, two, three. So that's the flow of control. And the last part of the recipe was a way to stop, right? You don't want a program that keeps
+90	15:00	going and going. Or for a recipe, you don't wanna keep baking bread forever, right? You wanna stop at some point, like 10 breads is enough, right? Okay, so you have to have a way of stopping. In
+91	15:10	the previous example, the way of stopping was that we decided we were close enough. Close enough was maybe being within .01, .0001,
+92	15:20	whatever you pick. So this recipe is therefore an algorithm, right, in computer science speak. It's going to be an algorithm, okay? And that's what
+93	15:30	we're going to learn about in this class. Okay. So we're dealing with computers, and we actually want to capture a recipe inside a computer Computer being
+94	15:40	a mechanical process. And historically, there were two different
+95	15:50	types of computers. So originally, there were these things called six -program computers. And
+96	16:00	I'm old enough to have used something like this, where there's just numbers and plus -minus multiplication, divide, and equal. But, calculators these days
+97	16:10	are a lot more complicated. But way back then, an example of a fixed program computer is this calculator. It only knows how to do addition, multiplication, subtraction, division.
+98	16:20	If you want to plot something, you can't. If you want to go on the internet, set email with it, you can't. It can only do this one thing.
+99	16:30	And if you wanted to create a machine that did another thing, then you'd have to create another fixed program computer. that did a completely separate task. So
+100	16:40	that's not very great. So that's when stored program computers came into play. And these were machines that could store a sequence of instructions.
+101	16:50	And these machines could execute the sequence of instructions. And you could change the sequence of instructions and execute this different sequence of instructions.
+102	17:00	So you could do different tasks in the same machine. Right? And that's the computer as we know it these days. So the central processing unit is where
+103	17:10	all of these decisions get made. And these are all the peripherals. So the basic machine architecture. So at the heart of every computer,
+104	17:20	there's just this basic architecture. And it contains, I guess, four main parts. So the first is the memory.
+105	17:30	The input and output is the other one. The ALU is where all of the operations are done. And
+106	17:40	the operations that the ALU can do are these really primitive operations, and subtraction, and so on. So what the memory contains is a bunch
+107	17:50	of data and your sequence of instructions.
+108	18:00	So interacting with the arithmetic logic unit is the control unit, and the control unit contains one program counter. So when you load a sequence of instructions, the
+109	18:10	program counter starts at the first sequence. It starts at the sequence at the first instruction. It gets what the instruction is, and it
+110	18:20	sends it to the ALU. The ALU asks, what are we doing operations on here? What's happening? So it might get some data. If you're adding two numbers,
+111	18:30	it might get two numbers from memory. It might do some operations, and it might store data back into memory. And after it's done, the ALU
+112	18:40	is going to go back, and the program counter is going to increase by one, which means that we're going to go to the next sequence in the instruction set.
+113	18:50	And it just goes linearly instruction by instruction. There might be one particular instruction that does some sort of test. It's going to say,
+114	19:00	is this particular value greater or equal to or the same as this other particular value?
+115	19:10	So that's a test, an example of a test. And the test is going to be either return true or false. And depending on the result of
+116	19:20	that test, you might either go to the next instruction or you might set the program counter to go all the way back to the beginning and so on. So you're not
+117	19:30	just sort of linearly stepping through all the instructions, there might be some control flow involved where you might skip an instruction or start from the beginning or so on. And after
+118	19:40	you're done, when you finished executing the last instruction, then you might output something. So that's really the basic
+119	19:50	way that a computer works. So just to recap, you have the stored program computer that contains these sequences of instructions. The primitive operations
+120	20:00	that it can do are addition, subtraction, logic, operations, tests, which are, you know, something equal to something else, something less than, and so on,
+121	20:10	and moving data. So storing data, moving data around, and things like that. And the interpreter goes through every instructions, every instruction, and
+122	20:20	decides whether you're going to go to the next instruction, skip instructions, or repeat instructions, and so on. So we've talked about primitives.
+123	20:30	And in fact, Alan Turing was a really great computer scientist. He showed that you can compute anything using the six primitives. And the six primitives are
+124	20:40	move left, move right, read right, scan, and do nothing. So using those six
+125	20:50	instructions and a piece of tape, he showed that you can compute anything. And using those six instructions,
+126	21:00	programming languages came about that created a more convenient set of primitives, so you don't have to program in only these six commands, right?
+127	21:10	And one interesting thing, or one really important thing that came about from these six primitives is that if
+128	21:20	you can compute something in Python, let's say, if you write a program that computes something in Python, then in theory, you can write a program that computes
+129	21:30	the exact same thing in any other language. And that's a really powerful statement. Think about that today when you review your slides, think about
+130	21:40	that again and that's really powerful. So once you have your set of primitives, you can set of primitives for
+131	21:50	a particular language. You can start creating expressions and these expressions are going to be combinations of the primitives in the programming language.
+132	22:00	And the expressions are going to have some value, and they're going to have some meaning in the programming language. So let's do a little bit of a parallel with
+133	22:10	English, just so you see what I mean. So in English, the primitive constructs are going to be words. There's a lot of words in the English language. Programming languages
+134	22:20	in Python, there are primitives, but there aren't as many of them. So there are floats, booleans. These are numbers, strings,
+135	22:30	and simple operators like addition, subtraction, and so on. So we have primitive constructs. Using these primitive constructs, we can
+136	22:40	start creating, in English, phrases, sentences, and the same in programming languages. So in English,
+137	22:50	we can say something like cat dog boy. That, we say, is not syntactically valid. So that's bad syntax, right?
+138	23:00	That's noun, noun, noun. That doesn't make sense. What does have good syntax in English is noun, verb, noun. So cat hugs boy
+139	23:10	is syntactically valid. Similarly, in a programming language, something like this, in Python in this case, a word And then the number five doesn't really make
+140	23:20	sense. It's not syntactically valid. But something like operator operand operator is OK. So once you've created
+141	23:30	these phrases or these expressions that are syntactically valid, you have to think about the static semantics
+142	23:40	of your phrase, of your expression. So, for example, in English, I are hungry is good
+143	23:50	syntax, okay? But it's kind of weird to say, right? We have a pronoun of verb and adjectives, which doesn't really make sense, right? I am
+144	24:00	hungry is better. So this is statically semantic. This does not have good static semantics. Similarly, in programming languages, and you'll get the hang of this
+145	24:10	the more you do it, something like this, 3 .2 times 5 is okay. But what does it mean? What's the meaning to have a
+146	24:20	word added to a number? There's no meaning behind that, right? Syntax is okay because you have operator, operand, operator, but
+147	24:30	it doesn't really make sense to add a number to a word, for example. So once you have created these expressions that are
+148	24:40	syntactically correct and static semantically correct, in English, for example, you think about the semantics. So what's the meaning of the phrase?
+149	24:50	And in English, you can actually have more than one meaning to an entire phrase. So in this case, flying planes can be dangerous,
+150	25:00	can have two meanings is the act of flying a plane is dangerous or the plane that is in the air is dangerous. And this might be a cuter
+151	25:10	example. This reading lamp hasn't uttered a word since I bought it. What's going on? So that has two meanings. It's playing on the word reading lamp.
+152	25:20	In programming, so that's in English. In English, you can have a sentence that has more than one meaning. That's syntactically correct and static semantically correct. But in programming languages, the
+153	25:30	program that you write, instead of instructions that you write, only has one meaning. So remember, we're coming back to the fact that the computer only does what you tell it to do.
+154	25:40	It's not going to suddenly decide to add another variable for some reason. It's just going to execute whatever statements you've put up.
+155	25:50	So in programming languages, there's only one meaning. But the problem that comes into play in programming languages is it's not the meaning that you might have intended
+156	26:00	needed as the programmer. So that's where things can go wrong. And there's going to be a lecture on debugging a little bit later in the course. But
+157	26:10	this is here just to tell you that if you see an error pop up in your program, it's just some text that says, error. No, it's some,
+158	26:20	for example, if we do something like this, This is syntactically correct.
+159	26:30	Incorrect, syntactically incorrect. See, there's some angry text right here. What is going on? The more you program, you'll get the hang of
+160	26:40	reading these errors. But this is basically telling me the line that I wrote is syntactically incorrect. And it's pointing me to the exact line and says this is wrong. So I
+161	26:50	can go back and fix it as a programmer. So syntax errors are actually really easily caught by Python. Static semantic
+162	27:00	errors, so that was an example of a syntax error. Static semantic errors can also be caught by Python as long as, if your program has some decisions to
+163	27:10	make, as long as you've gone down the branch where the static semantic error happens. And this is probably
+164	27:20	going to be the most frustrating one, especially as you're starting out, the program might do something different than what you expected it to do, right? And that's not because the program suddenly,
+165	27:30	you know, for example, you expected the program to give you an output of zero for a certain test case, and the output that you got was 10, right? Well, the program didn't suddenly decide to change
+166	27:40	its answer to 10. It just did execute the program that you wrote, right? All right, so that's the case where the
+167	27:50	program gave you a different answer than expected. Programs might crash, which means they stop running. That's OK. Just go back to your code and figure out what was wrong.
+168	28:00	And another example of different meaning than what you intended was maybe the program won't stop. It's also OK. There are ways to stop it besides restarting
+169	28:10	the computer. OK. OK, so then Python programs are going to be sequences of definitions and commands.
+170	28:20	We're going to have expressions that are going to be evaluated and commands that tell the
+171	28:30	interpreter to do something. So if you've done problem set 0, you'll see that you can type commands directly in the shell here, which is the part on
+172	28:40	the right where I did some really simple things, 2 plus 4. Or you can type commands up in here on the left -hand side and then run
+173	28:50	your program. Notice that, well, we'll talk about this. I won't talk about this now, but on the right -hand side, typically, you
+174	29:00	write very simple commands, just if you're testing something out. And on the left -hand side here in the editor, you write more lines and more complicated programs.
+175	29:10	Okay. So now we're going to start talking about Python. And in Python, we're going to
+176	29:20	come back to this, everything is an object. And Python programs manipulate these data objects. All objects in Python are going to have a
+177	29:30	type, and the type is going to tell Python on the kinds of operations that you can do on these objects. So if an object is the number 5, for example, you
+178	29:40	can add the number to another number, subtract the number, take it to the power of something, and so on. As a more general example, for example, I
+179	29:50	am a human. So that's my type. And I can walk, speak English, et cetera. Chewbacca is going to be a type Wookie, right? So we can
+180	30:00	walk, do that sound that I can't do, right? So he can do that, but I can't. I'm not even going to try. And so on. OK, so once you have
+181	30:10	these Python objects, everything is an object in Python. There are actually two types of objects. One are scalar objects. So that means these are very basic objects
+182	30:20	in Python from which everything can be made. So these are scalar objects. They can't be subdivided. The other type of object is a non
+183	30:30	-scalar object. And these are objects that have some internal structure. So for example, the number 5 is a scalar object because it can't be subdivided. But a list of
+184	30:40	numbers, for example, 5, 6, 7, 8 is going to be a non -scalar object because it can subdivide it. So you can subdivide it into,
+185	30:50	you can find parts to it. It's made up of a sequence of numbers, right? So here's the list of all of the scalar
+186	31:00	objects in Python. We have integers, for example all of the whole numbers, floats which are all of the decimal real numbers, anything
+187	31:10	with a decimal, bulls are bullions. There's only two values to the bullions. That's true and false. Note the capitalization,
+188	31:20	capital T and capital f, and this other thing called non -type. It's special. It has only one value called none. And it represents the absence of
+189	31:30	a type. And it sometimes comes in handy for some programs. If you want to find the type of an object, you can use this special command called type. And then in
+190	31:40	the parentheses, you put down what you want to find the type of. So you can write into the shell type of 5. And the shell will tell you that's an integer, OK?
+191	31:50	If you happen to want to convert between two different types, Python allows you to do that. And to do that, you
+192	32:00	put the type that you want to convert to right before the object that you want to convert to. So float 3 will convert the integer 3 to the float 3
+193	32:10	.0. And similarly, you can convert any float into an integer. and converting to an integer just truncates so
+194	32:20	it just takes away the decimal and whatever is after it it does not round and keeps just the integer part. Okay so
+195	32:30	for this slide I'm going to talk about it but if you'd like go to if you have the slides up go to go to this exercise and after I'm done talking about the slide we'll see
+196	32:40	we'll see what people think for that exercise okay So, one of the most important things that you can do in program, in
+197	32:50	basically any programming in Pythons, also, is to print things out. So, printing out is how you interact with the user, okay?
+198	33:00	So, to print things out, you use the print command, so if you're in the shell, if you simply type 3 plus 2, you do see a value here, 5,
+199	33:10	right? But that's not actually printing something out. And that becomes apparent when you actually type things into the editor. So if you just do
+200	33:20	3 plus 2, and you run the program, that's this little green button here. You see on the right -hand side here, it ran my program, but it didn't actually print anything.
+201	33:30	If you type this into the console, it does show you this value. But that's just peeking into the value for you as a programmer. It's not actually
+202	33:40	printing it out to anyone. If you want to print something out, you have to use the print statement like that. So in this case, this is actually going to print this
+203	33:50	number 5 to the console. So that's basically what it says. So out just
+204	34:00	tells you it's an interaction within the shell only. It's not interacting with anyone else. And if you don't have any out, that means it got printed out to the console. All right, so we
+205	34:10	talked a little bit about objects. Once you have objects, you can combine objects and operators to form these expressions. And each expression is going to have value. So an expression
+206	34:20	evaluates to a value. And the syntax for an expression is going to be object, operator, object, like that.
+207	34:30	And these are some operators you can do on instant floats. So, there's the typical ones, addition, subtraction, multiplication, and division. If for the first three
+208	34:40	you have the answer that you get, the type of the answer that you get is going to depend on the type of your variables. So, if both of the variables of
+209	34:50	the operands are integers, then the result you're going to get is of type integer. But if at least one of them is a float, then the result you're going to get is a float. Division is a little bit special
+210	35:00	in that no matter what the operands are the result is always going to be a float. The other
+211	35:10	operations you can do, and these are also useful, are the remainder. So the percent sign. If you use the percent
+212	35:20	sign between two operands that's going to give you the remainder when and you divide i by j. And raising something to the power of something else
+213	35:30	is using the star star operator. And i star star j is going to take i to the power of j.
+214	35:40	So these operations have the typical precedence that you might expect in math, for example. And if you'd like to put precedence towards some other operations,
+215	35:50	you can use parentheses to do that. OK,
+216	36:00	so we have ways of creating expressions, and we have operations we can do on
+217	36:10	objects. But what's going to be useful is to be able to save values to some name.
+218	36:20	And the name is going to be something that you pick, and it should be a descriptive name. And
+219	36:30	when you save the value to a name, you're going to be able to access that value later on in your program. And that's very useful.
+220	36:40	So to save a value to a variable name, you use the equal sign, okay? And the equal sign is
+221	36:50	an assignment. So it assigns the right -hand side, which is a value, to the left -hand side, which is going to be a variable name. So in this case, I
+222	37:00	assigned the float 3 .14159 to the variable pi. And in the second line, I'm going to take this expression 22 divided
+223	37:10	by 7 I'm going to evaluate it. It's going to come up with some decimal number and I'm gonna save it into the variable pi underscore approx. Values
+224	37:20	are stored in memory and this assignment in Python we say the assignment binds the name to the value. So when you when you use that name later on in your program you're going to be
+225	37:30	referring to the value in memory. And if you ever want to refer to the value later on in your code, you just simply type the name of
+226	37:40	the variable that you've assigned it to. So why do we want to give names to expressions? Well, you want to reuse the names instead
+227	37:50	of the values. And it makes your code look a lot nicer. So this is a piece of code that calculates the area of a circle. And notice I've
+228	38:00	assigned a variable pi to 3 .159. I've assigned another variable called radius to be 2 .2. And then later on in my code, I have another line that says
+229	38:10	area. This is another variable, is equal to, this is an assignment, to this expression. And this expression is referring
+230	38:20	to these variable names, pi and radius. And it's going to look up their values in memory. And it's going to replace these variable names with those values.
+231	38:30	And it's going to do the calculation for me. And in the end, this whole expression is going to be replaced by one number. And that's going to be the float, OK?
+232	38:40	Here's another exercise while I'm talking about the slide. I do want to make a note about programming versus math, OK? So in math,
+233	38:50	you're often presented with sort of a problem that says solve for x. x plus y is equal to something, something,
+234	39:00	solve for x, for example, OK? OK, that's coming back to the fact that computers don't know what to do
+235	39:10	with that. Computers need to be told what to do. So in programming, if you want to solve for x, you need to tell the computer exactly how to solve for x. You need to figure out what
+236	39:20	formula you need to give the computer in order to be able to solve for x. So that means always in programming, the right -hand side is going to
+237	39:30	be an expression, it's something that's going to be evaluated to a value, and the left -hand side is always a variable, so it's going to be an assignment.
+238	39:40	So the equal sign is not like in math, right, where you can have a lot of things to the left and a lot of things to the right of the equal sign. There's only one thing to the left of the equal sign and that's going to be a variable,
+239	39:50	and equal sign stands for an assignment. Once we've created expressions and we have these assignments, you can and rebind variable names using new assignment statements,
+240	40:00	OK? So let's look at an example for that. Let's say this is our memory, OK? Let's look at, let's type back in the
+241	40:10	example with finding the radius, OK? So let's say pi is equal to 3 .14, OK? So in memory, we're going to
+242	40:20	create this value 3 .14. Or we're going to bind it to the variable named pi. Next line, radius is equal to
+243	40:30	2 .2. In memory, we're creating this value 2 .2, and we're going to bind it to the variable named radius.
+244	40:40	Then we have this expression here. It's going to substitute the values for pi from memory and the value for radius from memory. It's
+245	40:50	going to calculate the value that this expression evaluates to. It's going to pop that into the memory, and it's going to assign, because
+246	41:00	we're using the equal sign, it's going to assign that value to that variable area. So now let's say we
+247	41:10	rebind radius to be something else. So radius is bound to the value
+248	41:20	2 .2. But when we do this line radius is equal to radius plus 1, we're going to take away the binding to 2 .2. We're going to do this calculation. The
+249	41:30	new value is 3 .2, and we're going to rebind that value to that same variable. So in memory, notice we're still going
+250	41:40	to have this value, 2 .2, floating around. But we've lost sort of the handle for it, okay? There's no way to get it back. So it's kind of just in memory, sitting
+251	41:50	there. At some point, it might get collected by what we call the garbage collector in Python. It'll retrieve these sort of lost
+252	42:00	values and it'll reuse them for new values and things like that. But radius now points to the new value, okay? So we can never get back 2 .2.
+253	42:10	And that's it. The value of area, notice this is very important, the value of area did not
+254	42:20	change. And it did not change because these are all the instructions we told the computer to do. We just told
+255	42:30	it to change radius to be radius plus 1. We never told it to recalculate the value of area. If I copied that line down here,
+256	42:40	then the value of area would change. But we never told it to do that, right? So the computer only does what we tell it to do. That's the last thing. Next lecture we're going to talk about
+257	42:50	adding control flow to our programs. So how do you tell the computer to do one thing or another? All right. You
+258	43:00	

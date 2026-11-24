@@ -1,0 +1,491 @@
+{
+ "n_windows": 810,
+ "n_pos": 148,
+ "base_rate": 0.18271604938271604,
+ "base": {
+  "loo": [
+   {
+    "held_out": "lec01_what_is_computation",
+    "model": "speech",
+    "AP": 0.15280579740734468,
+    "F1": 0.21348314606741572,
+    "base_rate": 0.17578125
+   },
+   {
+    "held_out": "lec01_what_is_computation",
+    "model": "vision",
+    "AP": 0.1595095133815906,
+    "F1": 0.2153846153846154,
+    "base_rate": 0.17578125
+   },
+   {
+    "held_out": "lec01_what_is_computation",
+    "model": "text",
+    "AP": 0.2906214726683122,
+    "F1": 0.3163841807909605,
+    "base_rate": 0.17578125
+   },
+   {
+    "held_out": "lec01_what_is_computation",
+    "model": "early",
+    "AP": 0.16302718069298833,
+    "F1": 0.24390243902439024,
+    "base_rate": 0.17578125
+   },
+   {
+    "held_out": "lec01_what_is_computation",
+    "model": "late",
+    "AP": 0.18083924958977735,
+    "F1": 0.25,
+    "base_rate": 0.17578125
+   },
+   {
+    "held_out": "lec01_what_is_computation",
+    "model": "unsupervised",
+    "AP": 0.16881536032672684,
+    "F1": 0.13333333333333333,
+    "base_rate": 0.17578125
+   },
+   {
+    "held_out": "lec08_object_oriented_programming",
+    "model": "speech",
+    "AP": 0.19895435738741146,
+    "F1": 0.2802547770700637,
+    "base_rate": 0.17408906882591094
+   },
+   {
+    "held_out": "lec08_object_oriented_programming",
+    "model": "vision",
+    "AP": 0.2101954435333378,
+    "F1": 0.32142857142857145,
+    "base_rate": 0.17408906882591094
+   },
+   {
+    "held_out": "lec08_object_oriented_programming",
+    "model": "text",
+    "AP": 0.18978582641571587,
+    "F1": 0.3,
+    "base_rate": 0.17408906882591094
+   },
+   {
+    "held_out": "lec08_object_oriented_programming",
+    "model": "early",
+    "AP": 0.22047657926981243,
+    "F1": 0.2929936305732484,
+    "base_rate": 0.17408906882591094
+   },
+   {
+    "held_out": "lec08_object_oriented_programming",
+    "model": "late",
+    "AP": 0.2552951415570949,
+    "F1": 0.3,
+    "base_rate": 0.17408906882591094
+   },
+   {
+    "held_out": "lec08_object_oriented_programming",
+    "model": "unsupervised",
+    "AP": 0.1961187136909393,
+    "F1": 0.18604651162790697,
+    "base_rate": 0.17408906882591094
+   },
+   {
+    "held_out": "lec10_program_efficiency",
+    "model": "speech",
+    "AP": 0.19686535853629988,
+    "F1": 0.21164021164021163,
+    "base_rate": 0.19543973941368079
+   },
+   {
+    "held_out": "lec10_program_efficiency",
+    "model": "vision",
+    "AP": 0.17680378154755425,
+    "F1": 0.23214285714285715,
+    "base_rate": 0.19543973941368079
+   },
+   {
+    "held_out": "lec10_program_efficiency",
+    "model": "text",
+    "AP": 0.1855038273164521,
+    "F1": 0.24731182795698925,
+    "base_rate": 0.19543973941368079
+   },
+   {
+    "held_out": "lec10_program_efficiency",
+    "model": "early",
+    "AP": 0.16985958219905678,
+    "F1": 0.20118343195266272,
+    "base_rate": 0.19543973941368079
+   },
+   {
+    "held_out": "lec10_program_efficiency",
+    "model": "late",
+    "AP": 0.17630967854115287,
+    "F1": 0.22988505747126436,
+    "base_rate": 0.19543973941368079
+   },
+   {
+    "held_out": "lec10_program_efficiency",
+    "model": "unsupervised",
+    "AP": 0.17221228655296056,
+    "F1": 0.13333333333333333,
+    "base_rate": 0.19543973941368079
+   }
+  ],
+  "summary": [
+   {
+    "model": "early",
+    "AP": 0.18445444738728586,
+    "F1": 0.2460265005167671
+   },
+   {
+    "model": "late",
+    "AP": 0.2041480232293417,
+    "F1": 0.2599616858237548
+   },
+   {
+    "model": "speech",
+    "AP": 0.182875171110352,
+    "F1": 0.23512604492589703
+   },
+   {
+    "model": "text",
+    "AP": 0.2219703754668267,
+    "F1": 0.2878986695826499
+   },
+   {
+    "model": "unsupervised",
+    "AP": 0.17904878685687556,
+    "F1": 0.15090439276485787
+   },
+   {
+    "model": "vision",
+    "AP": 0.18216957948749424,
+    "F1": 0.25631868131868135
+   }
+  ],
+  "early_AP_without": {
+   "speech": 0.20390189383960386,
+   "vision": 0.18064885939463915,
+   "text": 0.1825183221325926
+  }
+ },
+ "enriched": {
+  "loo": [
+   {
+    "held_out": "lec01_what_is_computation",
+    "model": "speech",
+    "AP": 0.1590104359246017,
+    "F1": 0.19883040935672514,
+    "base_rate": 0.17578125
+   },
+   {
+    "held_out": "lec01_what_is_computation",
+    "model": "vision",
+    "AP": 0.1685343987001492,
+    "F1": 0.24719101123595505,
+    "base_rate": 0.17578125
+   },
+   {
+    "held_out": "lec01_what_is_computation",
+    "model": "text",
+    "AP": 0.2889821431298723,
+    "F1": 0.3624161073825503,
+    "base_rate": 0.17578125
+   },
+   {
+    "held_out": "lec01_what_is_computation",
+    "model": "early",
+    "AP": 0.1941043963400207,
+    "F1": 0.32679738562091504,
+    "base_rate": 0.17578125
+   },
+   {
+    "held_out": "lec01_what_is_computation",
+    "model": "late",
+    "AP": 0.19131260553611298,
+    "F1": 0.25333333333333335,
+    "base_rate": 0.17578125
+   },
+   {
+    "held_out": "lec01_what_is_computation",
+    "model": "unsupervised",
+    "AP": 0.16881536032672684,
+    "F1": 0.13333333333333333,
+    "base_rate": 0.17578125
+   },
+   {
+    "held_out": "lec08_object_oriented_programming",
+    "model": "speech",
+    "AP": 0.16512682636615372,
+    "F1": 0.18840579710144928,
+    "base_rate": 0.17408906882591094
+   },
+   {
+    "held_out": "lec08_object_oriented_programming",
+    "model": "vision",
+    "AP": 0.21758373716388796,
+    "F1": 0.25766871165644173,
+    "base_rate": 0.17408906882591094
+   },
+   {
+    "held_out": "lec08_object_oriented_programming",
+    "model": "text",
+    "AP": 0.18385288162236518,
+    "F1": 0.22900763358778625,
+    "base_rate": 0.17408906882591094
+   },
+   {
+    "held_out": "lec08_object_oriented_programming",
+    "model": "early",
+    "AP": 0.18703283654973235,
+    "F1": 0.26356589147286824,
+    "base_rate": 0.17408906882591094
+   },
+   {
+    "held_out": "lec08_object_oriented_programming",
+    "model": "late",
+    "AP": 0.20049173305397783,
+    "F1": 0.25,
+    "base_rate": 0.17408906882591094
+   },
+   {
+    "held_out": "lec08_object_oriented_programming",
+    "model": "unsupervised",
+    "AP": 0.1961187136909393,
+    "F1": 0.18604651162790697,
+    "base_rate": 0.17408906882591094
+   },
+   {
+    "held_out": "lec10_program_efficiency",
+    "model": "speech",
+    "AP": 0.2011255164465151,
+    "F1": 0.23529411764705882,
+    "base_rate": 0.19543973941368079
+   },
+   {
+    "held_out": "lec10_program_efficiency",
+    "model": "vision",
+    "AP": 0.20151895815178167,
+    "F1": 0.2814070351758794,
+    "base_rate": 0.19543973941368079
+   },
+   {
+    "held_out": "lec10_program_efficiency",
+    "model": "text",
+    "AP": 0.20931153984594805,
+    "F1": 0.24705882352941178,
+    "base_rate": 0.19543973941368079
+   },
+   {
+    "held_out": "lec10_program_efficiency",
+    "model": "early",
+    "AP": 0.21894427881106998,
+    "F1": 0.26666666666666666,
+    "base_rate": 0.19543973941368079
+   },
+   {
+    "held_out": "lec10_program_efficiency",
+    "model": "late",
+    "AP": 0.19593479841674044,
+    "F1": 0.23668639053254437,
+    "base_rate": 0.19543973941368079
+   },
+   {
+    "held_out": "lec10_program_efficiency",
+    "model": "unsupervised",
+    "AP": 0.17221228655296056,
+    "F1": 0.13333333333333333,
+    "base_rate": 0.19543973941368079
+   }
+  ],
+  "summary": [
+   {
+    "model": "early",
+    "AP": 0.200027170566941,
+    "F1": 0.28567664792014996
+   },
+   {
+    "model": "late",
+    "AP": 0.19591304566894374,
+    "F1": 0.2466732412886259
+   },
+   {
+    "model": "speech",
+    "AP": 0.1750875929124235,
+    "F1": 0.20751010803507774
+   },
+   {
+    "model": "text",
+    "AP": 0.22738218819939518,
+    "F1": 0.2794941881665828
+   },
+   {
+    "model": "unsupervised",
+    "AP": 0.17904878685687556,
+    "F1": 0.15090439276485787
+   },
+   {
+    "model": "vision",
+    "AP": 0.1958790313386063,
+    "F1": 0.2620889193560921
+   }
+  ],
+  "early_AP_without": {
+   "speech": 0.21998820850620052,
+   "vision": 0.1902668806984257,
+   "text": 0.18553593387821024
+  }
+ },
+ "coefficients": {
+  "text_lines": -0.3242770237965338,
+  "speech_ratio": -0.2985440174750793,
+  "pause_before": -0.29573664411481726,
+  "novelty": -0.2573075891583397,
+  "perplexity": -0.1095529043488796,
+  "visual_change": -0.10485297618539506,
+  "speak_rate": -0.0932462117906511,
+  "flow_mag": -0.05987891249965208,
+  "pitch_range": -0.05728861716211811,
+  "energy_db": -0.0506386815056419,
+  "n_pauses": 0.0242298679572853,
+  "cue_define": 0.031457454283146856,
+  "energy_std": 0.06166706954442277,
+  "pitch_mean": 0.08144252140315618,
+  "salience": 0.12958138152211016,
+  "n_content": 0.15112165319608548,
+  "cue_flag": 0.20502804272258723,
+  "slide_overlap": 0.2652422881586794,
+  "mfcc_flux": 0.2761755828494606,
+  "diff_energy": 0.2778379819540714,
+  "cue_rule": 0.3085532332577371,
+  "is_slide": 0.34051355723886295
+ },
+ "loo": [
+  {
+   "held_out": "lec01_what_is_computation",
+   "model": "speech",
+   "AP": 0.1590104359246017,
+   "F1": 0.19883040935672514,
+   "base_rate": 0.17578125
+  },
+  {
+   "held_out": "lec01_what_is_computation",
+   "model": "vision",
+   "AP": 0.1685343987001492,
+   "F1": 0.24719101123595505,
+   "base_rate": 0.17578125
+  },
+  {
+   "held_out": "lec01_what_is_computation",
+   "model": "text",
+   "AP": 0.2889821431298723,
+   "F1": 0.3624161073825503,
+   "base_rate": 0.17578125
+  },
+  {
+   "held_out": "lec01_what_is_computation",
+   "model": "early",
+   "AP": 0.1941043963400207,
+   "F1": 0.32679738562091504,
+   "base_rate": 0.17578125
+  },
+  {
+   "held_out": "lec01_what_is_computation",
+   "model": "late",
+   "AP": 0.19131260553611298,
+   "F1": 0.25333333333333335,
+   "base_rate": 0.17578125
+  },
+  {
+   "held_out": "lec01_what_is_computation",
+   "model": "unsupervised",
+   "AP": 0.16881536032672684,
+   "F1": 0.13333333333333333,
+   "base_rate": 0.17578125
+  },
+  {
+   "held_out": "lec08_object_oriented_programming",
+   "model": "speech",
+   "AP": 0.16512682636615372,
+   "F1": 0.18840579710144928,
+   "base_rate": 0.17408906882591094
+  },
+  {
+   "held_out": "lec08_object_oriented_programming",
+   "model": "vision",
+   "AP": 0.21758373716388796,
+   "F1": 0.25766871165644173,
+   "base_rate": 0.17408906882591094
+  },
+  {
+   "held_out": "lec08_object_oriented_programming",
+   "model": "text",
+   "AP": 0.18385288162236518,
+   "F1": 0.22900763358778625,
+   "base_rate": 0.17408906882591094
+  },
+  {
+   "held_out": "lec08_object_oriented_programming",
+   "model": "early",
+   "AP": 0.18703283654973235,
+   "F1": 0.26356589147286824,
+   "base_rate": 0.17408906882591094
+  },
+  {
+   "held_out": "lec08_object_oriented_programming",
+   "model": "late",
+   "AP": 0.20049173305397783,
+   "F1": 0.25,
+   "base_rate": 0.17408906882591094
+  },
+  {
+   "held_out": "lec08_object_oriented_programming",
+   "model": "unsupervised",
+   "AP": 0.1961187136909393,
+   "F1": 0.18604651162790697,
+   "base_rate": 0.17408906882591094
+  },
+  {
+   "held_out": "lec10_program_efficiency",
+   "model": "speech",
+   "AP": 0.2011255164465151,
+   "F1": 0.23529411764705882,
+   "base_rate": 0.19543973941368079
+  },
+  {
+   "held_out": "lec10_program_efficiency",
+   "model": "vision",
+   "AP": 0.20151895815178167,
+   "F1": 0.2814070351758794,
+   "base_rate": 0.19543973941368079
+  },
+  {
+   "held_out": "lec10_program_efficiency",
+   "model": "text",
+   "AP": 0.20931153984594805,
+   "F1": 0.24705882352941178,
+   "base_rate": 0.19543973941368079
+  },
+  {
+   "held_out": "lec10_program_efficiency",
+   "model": "early",
+   "AP": 0.21894427881106998,
+   "F1": 0.26666666666666666,
+   "base_rate": 0.19543973941368079
+  },
+  {
+   "held_out": "lec10_program_efficiency",
+   "model": "late",
+   "AP": 0.19593479841674044,
+   "F1": 0.23668639053254437,
+   "base_rate": 0.19543973941368079
+  },
+  {
+   "held_out": "lec10_program_efficiency",
+   "model": "unsupervised",
+   "AP": 0.17221228655296056,
+   "F1": 0.13333333333333333,
+   "base_rate": 0.19543973941368079
+  }
+ ]
+}

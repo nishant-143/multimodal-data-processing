@@ -1,0 +1,310 @@
+window	start	text
+0	0:00	The following content is provided under a Creative Commons license. Your support will help MIT OpenCourseWare continue to offer high quality educational resources
+1	0:10	for free. To make a donation or view additional materials from hundreds of MIT courses, visit MIT OpenCourseWare at ocw .mit
+2	0:20	.edu. OK, folks, welcome back. Hope you had a nice long weekend
+3	0:30	with no classes, you got caught up on all those problem sets that have been sneaking up on you, you enjoyed watching the Patriots and Tom Brady come back, oops sorry I'm showing my local bias.
+4	0:40	Before we talk about today's topic, I want to take a second to set the stage and I want you to stop and think about what you've seen so far in this course.
+5	0:50	We're coming up on the end of the first section of the course and you've already seen a lot. Certainly learned about fundamentals of computation. You've seen different kinds of
+6	1:00	data structures, both mutable and immutable. So tuples and lists, dictionaries, different ways of pulling things together. Seen a range of algorithms, from simple linear code
+7	1:10	to loops, fors and whiles. You've seen iterative algorithms. You've seen recursive algorithms. You've seen classes of algorithms, divide and
+8	1:20	conquer, greedy algorithms, bi -section search, a range of things, and then most recently you saw pulling things together with classes, a way to group
+9	1:30	together data that belongs together along with methods or procedures that are designed to manipulate that data. So you've had actually a fairly good coverage already of
+10	1:40	a lot of the fundamentals of computation, and you're starting to get geared up to be able to tackle a pretty interesting range of problems. Today and And
+11	1:50	Monday, we're going to take a little bit of a different look at computation. Because now that you've got the tools to start building up your own personal armamentarium of
+12	2:00	tools, we'd like to ask a couple of important questions. The primary one of which is, how efficient are my algorithms? And
+13	2:10	by efficiency, we'll see it refers both to space and time, but primarily to time. And we'd like to know both how fast are my algorithms going going to run, and how could I reason
+14	2:20	about that's performance. And that's what we're going to do with today's topics. We're going to talk about orders of growth. We'll define what that means in a few minutes. We're going to talk about what's called the big O notation.
+15	2:30	And we're going to begin to explore different classes of algorithms. Before we do that, though, let's talk about why.
+16	2:40	And I want to suggest to you there are two reasons this is important to be considering. The first question is, how could we reason about an algorithm,
+17	2:50	something you write, in order to predict how much time is it going to need to solve a problem of a particular size? I might be testing my code on small -scale
+18	3:00	examples, and I want to know if I run it on a really big one, how long is it going to take? Can I predict that? Can I make guess about how much time I'm going to need to solve
+19	3:10	this problem, especially Especially if it's in a real world circumstance where time is going to be crucial. Equally important is going the other direction.
+20	3:20	We want you to begin to reason about the algorithms you write to be able to say how do certain choices in the design of an algorithm influence how
+21	3:30	much time it's going to take. If I choose to do this recursively, is that going to be different than iteratively? If I choose to do this with a particular kind of structure in my algorithm, what
+22	3:40	does that say about the amount of time I'm going to need? And you're going to see there's a nice association between classes of algorithms and the interior structure of them.
+23	3:50	And in particular, we want to ask some fundamental questions. Are there fundamental limits to how much time it's going to take to solve a particular problem, no
+24	4:00	matter what kind of algorithm I design around this? And we'll see that there's some nice challenges about that. So that's what we're going to do over the next two days. Before we do, though,
+25	4:10	let's maybe ask the obvious question, why should we care? Could be on a quiz, might matter to you. Better choice is because
+26	4:20	it actually makes a difference. And I say that because it may not be as obvious to you as it was in an earlier generation. So people with my gray hair or what's left of my gray hair like to tell
+27	4:30	stories, I'll make it short. But I started programming 41 years ago. No, sorry, 45 years ago. On
+28	4:40	punch cards, you don't know what those are unless you've been to a museum on a machine that filled a half a room and that took about five minutes to execute what you can do in a fraction of a second on your
+29	4:50	phone, right? This is to tell you you're living in a great time, not independent of what's going to happen on November 8th. All right, we'll stay away from those topics as well, won't we?
+30	5:00	My point is, yeah, I tell old stories. I'm an old guy. But you might argue, look, computers are getting so much faster, does it really matter? And I want to say to you, maybe
+31	5:10	it's obvious to you, yes, absolutely it does. Because in conjunction with us getting faster computers, we're increasing the sizes of the problems. The data sets we want to analyze
+32	5:20	are getting massive. And I'll give you an example. I just pulled this off of Google, of course. In 2014, I don't have more recent numbers. Google served,
+33	5:30	I think I have that number right, 30 trillion pages on the web. See the 30 trillion or 30 quadrillion, I can't
+34	5:40	count that many zeros there. It covered 100 million gigabytes of data. And I suggest to you, if you want to find a piece of information on the web, can you write a simple
+35	5:50	little search algorithm that's going to sequentially go through all the pages and find anything in any reasonable amount of time? Probably not, right? It's just growing away too fast.
+36	6:00	This, by the way, is, of course, why Google makes a lot of money off of their MapReduce algorithm for searching the web. Written, by the way, or co -written by an MIT
+37	6:10	grad and the parent of a current MIT student. So there's a nice hook in there. Not that Google pays MIT royalties for that wonderful thing, by the way. All right, bad jokes aside,
+38	6:20	searching Google, ton of time. Searching a genomics data set, ton of time. The data sets are growing so fast. You're working for the
+39	6:30	US government. You want to track terrorists using image surveillance from around the world, growing incredibly rapidly. Pick a problem that data sets grow so quickly
+40	6:40	that even if the computers speed up, you still need to think about, how do I come up with efficient ways to solve those problems? So I want to suggest to you, while sometimes
+41	6:50	simple solutions are great, they're the easy ones to write, sorry, at times you need to be more sophisticated therefore we want to reason about how do we measure efficiency
+42	7:00	and how do we relate algorithm design choices to the cost that's going to be associated with it okay even
+43	7:10	when we do that we've got a choice to make because we could talk about both efficiency in terms of time or in terms of space meaning how much storage do I have inside the computer
+44	7:20	and the reason that's relevant is there's actually, in many cases, a trade -off between those two. And you've actually seen an example, which you may or may not remember. You may
+45	7:30	recall when we introduced dictionaries, I showed you a variation where you could compute Fibonacci using the dictionary to keep track of intermediate values. And we'll
+46	7:40	see in next week that it actually tremendously reduces the time complexity. That's called a trade -off in the sense that sometimes I can pre -compute portions of the answer, store
+47	7:50	them away so that when I'm trying to do a bigger version of the answer, I can just look up those portions. So there's going to be a trade -off here. We're going to focus, for purposes of this lecture and the next
+48	8:00	one, on time efficiency. How much time is it going to take our algorithms to solve a problem? OK, what are the challenges in doing
+49	8:10	that before we look at the actual tools? And in fact, this is going to lead into the tools. The first one is, even if I've decided on an algorithm, there are lots of ways
+50	8:20	to implement that. A while loop and a for loop might have slightly different behavior. I could choose to do it with temporary variables or using direct substitution. Lots of
+51	8:30	little choices. So an algorithm could be implemented many different ways. How do I measure the actual efficiency of the algorithm? Second one is, I might for
+52	8:40	a given problem have different choices of algorithm. A recursive solution versus an iterative one. Using a divide and conquer versus straightforward search. We're going
+53	8:50	to see some examples of that. So I've got to somehow separate those pieces out. And in particular, I'd like to separate out the choice of implementation from the choice of algorithm.
+54	9:00	I want to measure how hard is the algorithm, not can I come up with a slightly more efficient way of coming up with an implementation. So here are three ways I might do
+55	9:10	it. And we're going to look at each one of them very briefly. The obvious one is we could be scientists. Time it. Write the code. run a bunch of test case, run a
+56	9:20	timer, use that to try and come up with a way of estimating efficiency. We'll see some challenges with that. Slightly more abstractly, we
+57	9:30	could count operations. We could say here are the set of fundamental operations, mathematical operations, comparisons, setting values, retrieving values,
+58	9:40	and simply say how many of those operations do I use in my algorithm as as a function of the size of the input. And that could be used to give us a sense of efficiency.
+59	9:50	We're going to see both of those are flawed somewhat more in the first case than the second one. And so we're going to abstract that second one to a more abstract notion of something we call
+60	10:00	an order of growth. And I'll come back to that in a couple of minutes. This is the one we're going to focus on. It's one that computer scientists use. It leads to what we
+61	10:10	call complexity classes. So order of growth or big O notation is a way of abstractly describing the behavior of an algorithm and especially the equivalences of different
+62	10:20	algorithms. But let's look at those. Timing. Python provides a timer for you. You could import the time module and then you can call,
+63	10:30	as you can see right down here, I might have defined a really simple little function, converts Celsius to Fahrenheit, and in particular I could invoke the clock method from the time
+64	10:40	module. And what that does is it gives me a number as the number of some fractions of a second currently there. Having done that, I could call the function, and then I could call
+65	10:50	the clock again and take the difference to tell me how much time it took to execute this. It's going to be a tiny amount of time. And then I could certainly print out some statistics.
+66	11:00	I could do that over a large number of runs, different sizes of the input, and come up with a sense of how much time time does it take? Here's the problem with that.
+67	11:10	Not a bad idea. Again, my goal is to evaluate algorithms. Do different algorithms have different amounts of time associated with them?
+68	11:20	The good news is that if I measure running time, it will certainly vary as the algorithm changes. Just what I want to measure. Sorry. But one of the problems is that
+69	11:30	it will also vary as a function of the implementation. Right? If I use a loop that's got a couple the more steps inside of it in one algorithm than another, it's going to change the time. And
+70	11:40	I don't really care about that difference. So I'm confounding or conflating implementation influence on time with algorithm influence on time. Not so good.
+71	11:50	Worse, timing will depend on the computer. My Mac here is pretty old. Well, at least for computer versions, it's about five years old. I'm
+72	12:00	sure some of you have much more recent Macs or other kinds of machines. Your speeds may differ from mine. And that's not going to help me in trying to measure this. And even if I could
+73	12:10	measure it on small -sized problems, it doesn't necessarily predict what happens when I go to really large -sized problems, because of issues like the time it takes to get things out of memory
+74	12:20	and bring them back into the computer. So what it says is that timing does vary based on what I'd like to measure, but it varies on a lot of other
+75	12:30	factors. And it's really not all that valuable. one. OK, got rid of the first one. Let's abstract that. By abstract,
+76	12:40	I'm going to make the following assumption. I'm going to identify a set of primitive operations. I kind of get to say what they are, but the obvious one is to say, what does the machine do for
+77	12:50	me automatically? That would be things like arithmetic or mathematical operations, multiplication, division, subtraction, comparisons,
+78	13:00	something equal to another thing, something greater than, something less than. Assignments set a name to a value and retrieval from memory. I'm going to assume
+79	13:10	that all of these operations take about the same amount of time inside my machine. Nice thing here is that it doesn't matter which machine I'm using, I'm measuring
+80	13:20	how long does the algorithm take by counting how many operations of this type are done inside of the algorithm. And I'm going to use that count to come up with
+81	13:30	a number of operations executed as a function of the size of the input. And if I'm lucky, that'll give me a sense of what's the efficiency of the algorithm. So this one's
+82	13:40	pretty boring. It's got three steps, a multiplication, a division, and an addition, four if you count the return. But if I had a little thing here that added up the integers from 0 up to
+83	13:50	x, I've got a little loop inside here. And I could count operations. So in this case, it's just, as I said, three operations. here, I've got one operation.
+84	14:00	I'm going to do an assignment. And then inside here, in essence, there's one operation to set i to a value from that iterator.
+85	14:10	Initially, it's going to be 0 and then it's going to be 1 and you get the idea. And here, that's actually two operations. It's a nice
+86	14:20	Python shorthand, but what is that operation? It says, take the value of total and the value of i, add them together, it's one operation, and then set that value, or rather set the name
+87	14:30	total to that new value, so second operation. So you can see in here, I've got three operations. And what else do I have? Well, I'm going to go through this loop x
+88	14:40	times, right? I do it for i equals 0, then for i equals 1, and so on. So I'm going to run through that loop x times. And if I put that together, there,
+89	14:50	I get a nice little expression, 1 plus 3x. Actually I probably cheated here. I shouldn't say cheated. I probably should have counted the
+90	15:00	return as one more operation. So that would be 1 plus 3x plus 1, or 3x plus 2 operations. Why should you care? It's a little
+91	15:10	closer to what I'd like, because now I've got an expression that tells me something thing about how much time is this going to take as I change the size of the problem.
+92	15:20	If x is equal to 10, it's going to take me 32 operations. If x is equal to 100, 302 operations. If x is equal to 1 ,000, 3 ,002 operations. And if I wanted the
+93	15:30	actual time, I just multiplied that by whatever that a constant amount of time is for each operation. I've got a good estimate of that. Sounds pretty good. Not quite what
+94	15:40	we want, but it's close. So if I was counting operations, what could I say about it? First of all, it certainly depends on the algorithm. That's
+95	15:50	great. Number of operations is going to directly relate to the algorithm I'm trying to measure, which is what I'm after. Unfortunately, it still depends
+96	16:00	a little bit on the implementation. Let me show you what I mean by that by backing up for a second. find. Suppose I were to change this for loop
+97	16:10	to a while loop. I'll set i equal to 0 outside of the loop, and then while i is less than x plus 1, I'll do the things inside of
+98	16:20	that. That would actually add one more operation inside the loop, because I both have to set the value of i, and I have to test the value of
+99	16:30	i, as well as doing the other operations down here. And so rather than getting 3x plus 1, I would get 4x plus 1. Ehh.
+100	16:40	As the government says, what's the difference between 3 and 4, you know, when you're talking about really big numbers. Problem is, in terms of counting, it does depend. And I want to get
+101	16:50	rid of that in a second. So it still depends a little bit on the implementation. I remind you I wanted to measure impact of the algorithm. The other good news is the count is
+102	17:00	independent of which computer I run on, as long as all of my computers come with the same set of basic operations, I don't care what the time of my computer is versus yours to do those
+103	17:10	operations, I'm measuring how much time it would take. And I should say, by the way, one of the reasons I want to do it is less to know is it going to take 37 .42 femtoseconds or
+104	17:20	not, but rather to say if this algorithm has a particular behavior, if I double the size of the input, does that double the amount of time I need? Does that quadruple the amount of
+105	17:30	time I need? Does it increase it by a factor of 10? And here, what matters isn't the speed of the computer, it's the number of operations. The last one
+106	17:40	I'm not going to really worry about, but we'd have to really think about what are the operations we want to count. I made an assumption that the amount of time it takes to retrieve something from
+107	17:50	memory is the same as the amount of time it takes to do a numerical computation. That may not be accurate. But this one can probably you dealt with by just agreeing on what are the common operations and
+108	18:00	then doing the measurement. So this is closer. Excuse me. Certainly, that count varies for different inputs. And we can use it to come
+109	18:10	up with a relationship between the inputs and the count. And for the most part, it reflects the algorithm, not the implementation. But it's still got that last piece left there. So
+110	18:20	I need to get rid of the last piece. So what can we say here? For timing and counting, do evaluate or reflect implementations. I don't want that. Timing also
+111	18:30	evaluates the machines. What I want to do is just evaluate the algorithm, and especially I want to understand how does it scale. I'm going to say what I said a few minutes ago
+112	18:40	again. If I were to take an algorithm and I say I know what its complexity is, my question is if I double the size of the input, what does it say
+113	18:50	to the speed? Because that's going to tell me something about the algorithm. I want to say what happens when I scale it. And in particular, I want to relate that to the size of the input. So here's what we're going to
+114	19:00	do. We're going to introduce orders of growth, some wonderful tool in computer science. And what we're going to focus on is that idea of counting operations. But we're not going to worry about small variations,
+115	19:10	whether it's three or four steps inside of the loop. We're going to show that that doesn't matter. And if you think about my statement of, does it double in terms of size or speed or not, or sorry,
+116	19:20	time or not, whether it goes from 3 to 6 or 4 to 8, it's still a doubling. So I don't care about those pieces inside. I'm going to focus on what happens when the
+117	19:30	size of the problem gets arbitrarily large. I don't care about counting things from 0 up to x when x is 10 or 20. What happens when it's a million, a hundred million?
+118	19:40	What's the asymptotic behavior of this? And I want to relate that time needed against the size of the input. So I can make that comparison, I suggest it.
+119	19:50	Okay, so to do that, we have to do a couple of things. We have to decide what are we going to measure, and then we have to think about how do we count without worrying about implementation details.
+120	20:00	So we're going to express efficiency in terms of size of input. And usually this is going to be obvious. If I've got a
+121	20:10	procedure that takes one argument that's an integer, the size of the integer is the thing I'm going to measure things in. If I double the size of that integer, what happens to the computation?
+122	20:20	If I'm computing something over a list, typically the length of the list is going to be the thing I'm going to use to characterize the size of the problem. If I've
+123	20:30	got, and we'll see this in a second, a function that takes more than one argument, I get to decide what's the parameter I want to use. If I'm searching to see is this element in that list, typically I
+124	20:40	want to worry about what's the size of the list, not what's the size of the element. But we have to specify what is it we're measuring, and we're going to see examples of that in just a second.
+125	20:50	Okay. So now we start thinking about, that sounds great. Certainly if I'm computing something numeric, sum of integers from
+126	21:00	zero up to X, it's kind of obvious X is the size of my problem, how many steps does it take, I can count that. But in some cases, the amount of time the code takes is going to depend
+127	21:10	on the input. So let's take this little piece of code here. And I do hope by now, even though we flash up code, you're already beginning to recognize what does it do, not the
+128	21:20	least of which by the clever name that we chose. But this is obviously just a little function. It runs through a loop, a for loop that takes i for
+129	21:30	each element in a list l. And it's checking to see is i equal to the element I've provided. And what it is, I'm going to return true. If I get all the way through the loop and I didn't find it, I'm going
+130	21:40	to return false. It's just saying, is E in my input list L? How many steps is this going to take? Well, we can certainly count the
+131	21:50	number of steps in the loop, right? We've got to set i. We've got to compare i, and potentially we've got to return. So there's at most three steps inside the loop.
+132	22:00	But it depends on how lucky I'm feeling, right? If E happens to be the first element in the list, it goes through the loop once, I'm done. Great.
+133	22:10	I'm not always that lucky. If E is not in the list, then it will go through this entire loop until it gets all the way through the elements of L
+134	22:20	before saying false. So this is sort of a best case scenario. This is the worst case scenario. Again, if I'm
+135	22:30	assigned to say, well, let's run some trials. Let's do a bunch of examples and see how many steps does it go through, and that would be the average case. On average, I'm likely to look at half the elements in the list
+136	22:40	before I find it, right? I'm lucky it's early on if I'm not so lucky it's later on. Which one do I use? Well, we're going to focus
+137	22:50	on this one because that gives you an upper bound on the amount of time it's going to take. What happens in the worst case scenario? We will find at times
+138	23:00	it's valuable to look at the average case to give us a rough sense of what's going to happen on average. But usually, when we talk about complexity, we're going to focus on the worst case behavior.
+139	23:10	So to say it a little bit different way, let's go back to my example. Suppose you give it a list L of some length, length of L, we call that N if you like,
+140	23:20	then my best case would be the minimum running time. And in this case, it would be for the first element in the list, and notice in that case, the number of steps I take would
+141	23:30	be independent of the length of L. That's great. It doesn't matter how long the list is. If I'm always going to find the first element, I'm done. The average case would be the average over
+142	23:40	the number of steps I take, depending on the length of the list. It's going to grow linearly with the length of the list. It's a good practical measure. But the one I want to focus on
+143	23:50	will be the worst case. And here, the amount of time, as we're going to see in a couple of slides, is linear in the size of the problem. meaning
+144	24:00	if I double the length of the list, in the worst case it's going to take me twice as much time to find that it's not there. If I increase
+145	24:10	the length of the list by a factor of 10, in the worst case it's going to take me 10 times as much time as it did in the earlier case to find out that the problem's not there. And that linear relationship is what
+146	24:20	I want to capture. So we're going to focus on that. What's the worst case behavior? And we're about ready to start talking about orders of growth, but here
+147	24:30	then is what orders of growth are going to provide for me. I want to evaluate efficiency, particularly when the input is very large. What happens when I really scale this up?
+148	24:40	I want to express the growth of the program's runtime as that input grows. Not the exact runtime, but that notion of if I double it,
+149	24:50	how much longer does it take? What's the relationship between increasing the size of the input and the increase in the amount of time it takes to solve it? We're going
+150	25:00	to put an upper bound on that growth. And if you haven't seen this in math, it basically says, I want to come up with a description that is at least as big as, sorry,
+151	25:10	as big as or bigger than the actual amount of time it's going to take. And I'm going to not worry about being precise. We're going to talk about being order of rather than
+152	25:20	exact. I don't need to note to the femtosecond how long this is going to take, or to exactly one operation how long it's going to take. But I want to say things like, this is going to
+153	25:30	grow linearly. I double the size of the input, it doubles the amount of time. Or this is going to grow quadratically. I double the size of the input, it's going to take four times as much time to
+154	25:40	solve it. Or if I'm really lucky, this is going to have constant growth. No matter how I change the input, it's not going to take any more time. To do that, we're going to look at the largest factors
+155	25:50	in the runtime, which piece of the program takes the most time. And so in orders of growth, we are going to look for as tight as possible and upper bound on the growth as a function
+156	26:00	of the size of the input in the worst case. Nice long definition. Almost ready to look at some examples. So here's the notation
+157	26:10	we're going to use. It's called big O notation. I have to admit, and John's not here today to remind me the history. I think it comes because we used Omicron, God knows why. Sounds like
+158	26:20	something from Futurama, but we used Omicron as our symbol to define this. I'm having such good luck with bad jokes today. You're not even wincing when I throw those things
+159	26:30	out, but that's okay. It's called Big O notation. Well, you're going to use it, we're going to describe the rules of it, is this the tradition of it? It describes the worst case because it's often the bottleneck we're after,
+160	26:40	and as we've said it's going to express the growth of the program relative to the input size. OK, let's see how we go from counting operations
+161	26:50	to getting to orders of growth. Then we're going to define some examples of order growth, and we're going to start looking at algorithms. Here's a piece of code you've seen before. Again, hopefully you recognize or conceive
+162	27:00	fairly quickly what it's doing. Computing factorial, the iterative way. Basically, remember, n factorial is n times n minus 1 times n minus 2 all the way down to 1. hopefully assuming n is
+163	27:10	a non -negative integer. Here we're going to set up an internal variable called answer and then we're just going to run over a loop. As long as n is bigger than 1 we're going to multiply
+164	27:20	answer by n, store it back into answer, decrease n by 1 and we'll keep doing that until we get out of the loop and we're going to return answer. We'll start by counting steps.
+165	27:30	That's by the way just to remind you that in fact there are two steps here. So what do I have. I've got one step up there, set answer to 1.
+166	27:40	I'm setting up n. Sorry, I'm not setting up n. I'm going to test n. And then I'm going to do two steps here because I got to multiply answer by n and then set it to
+167	27:50	answer. And I similarly got two steps there because I'm subtracting 1 from n and then setting it to n. So I've got 2 plus 4 plus the test, which is 5.
+168	28:00	I've got 1 outside here. I've got 1 outside there. And I'm going to go through this loop, n times. So I would suggest that if I count number of steps,
+169	28:10	it's 1 plus 5n plus 1, OK? Sort of what we did before. 5n plus
+170	28:20	2 is the total number of steps that I use here. But now I'm interested in what's the worst case behavior. Well, in this case, it is the worst case behavior because it doesn't have decisions anywhere in here.
+171	28:30	But I just want to know what's the asymptotic complexity. And I'm going to say, oh, sorry, that is to say I could do this different ways. I could have done this
+172	28:40	with two steps like that. That would have made it not just 1 plus 5n plus 1. It would have made it 1 plus 6n plus 1 because I got an extra step. I put that up because I want
+173	28:50	to remind you I don't care about implementation differences. And so I want to know what captures both of those behaviors. And in big
+174	29:00	O notation, I say that's order n. Grows linearly. I'm going to keep doing this to you until you really do wince at me. If
+175	29:10	I were to double the size of n, whether I use this version or that version, the amount of time the number of steps is basically going to double.
+176	29:20	Now, you say, wait a minute, 5n plus 2, if n is 10, that's 52. If n is 20, that's 102. That's not quite doubling. And
+177	29:30	you're right. But remember, we really care about this in the asymptotic case. When n gets really big, those extra little pieces don't matter. And so what we're going to do is we're going to ignore the
+178	29:40	additive constants and we're going to ignore the multiplicative constants when we talk about orders of growth. So what does O of n measure?
+179	29:50	Now, I'm just summarizing here. We want to describe how much time is needed to compute or how does the amount of time rather needed to compute a problem grow as the size of the problem itself
+180	30:00	grows. So we want an expression that counts that asymptotic behavior and we're going to focus as a consequence on the term that grows most rapidly.
+181	30:10	So here are some examples and I know if you're following along you can already see the answers here but we're going to do this to simply give you a sense of that. If I'm counting
+182	30:20	operations and I come up with an expression that has n squared plus 2n plus 2 operations. That expression, I say, is order n squared.
+183	30:30	The 2 and the 2n don't matter. And think about what happens if you make n really big, right? n squared is much more dominant than the other terms. We say that's
+184	30:40	order n squared. Even this expression, we say, is order n squared. Now, in this case, for lower values of n, this
+185	30:50	term is going to be the big one in terms of number of steps. I have no idea how I wrote such an inefficient algorithm that it took 100 ,000 steps to do something. But if I had that expression, for smaller
+186	31:00	values of n, this matters a lot. This is a really big number, but when I'm interested in the growth, and that's the term that dominates. And you see the idea, or
+187	31:10	begin to see the idea here. when I have expressions. If it's a polynomial expression, it's the highest order term that's the term that
+188	31:20	captures the complexity. Both of these are quadratic. This term is order n, because n grows faster than log of
+189	31:30	n. This funky -looking term, even though that looks like the big number there, and it is a big number, that expression we see is order n log n.
+190	31:40	Because again, if I plot out as how this changes as I make n really large, this term eventually takes over as the dominant term. What about that one?
+191	31:50	What's the big term there? How many people think it's n to the 30th? Show of hands. How many people think it's 3 to the
+192	32:00	n? Show of hands. Thank you. You're following along. You're also paying attention. How many people think I should stop asking questions? No show of hands. All right. But you're right.
+193	32:10	Exponentials are much worse than powers. Even something like this. Again, it's going to take a big value of n before it gets there, but it does get there.
+194	32:20	And that, by the way, is important because we're going to see later on in the term that there are some problems where it's believed that all of the solutions are exponential. And that's a pain
+195	32:30	because it says it's always going to be expensive to compute. So that's how we're going to reason about these things. And to see it visually, here are the differences between
+196	32:40	those different classes. Something that's constant. The amount of time doesn't change as I change the size of the input. Something that linear grows as a straight line, as you would
+197	32:50	expect. Nice behavior. Quadratic starts to grow more quickly. Log is always better than linear because it slows down as we increase the size.
+198	33:00	n log n, or log linear is a funky term, But we're going to see it's a very common complexity for really valuable algorithms in computer science. And
+199	33:10	it has a nice behavior sort of between the linear and the quadratic. An exponential blows up. Just to remind you of that, oh, sorry. Let me show you how we're going to do the reasoning
+200	33:20	about this. So here's how we're going to reason about it. We've already seen some code where I started working through this process of counting operations.
+201	33:30	Here are the tools I want you to use. is given a piece of code, you're going to reason about each chunk of code separately. If you've got sequential pieces
+202	33:40	of code, then the rules are called the law of addition for order of growth is that the order of growth of the combination is the combination of
+203	33:50	the order of the growth. Say that quickly 10 times. But let's look at an example of that. Here are two loops. You've already seen examples of
+204	34:00	how to reason about those loops. But for this one, it's linear in the size of n. I'm going to go through the loop n times doing a constant amount of things each time around. But what I
+205	34:10	just showed, that's order n. This one, again, I'm doing just a constant number of things inside the loop. But notice that it's n squared.
+206	34:20	So that's order n squared, n times n. The combination is I have to do this work and then that work. So I write that as saying, that is order of
+207	34:30	n plus order of n squared. But by this up here, that is the same as saying, what's the order of growth of n plus n squared? Well, yeah, we just
+208	34:40	saw that. It says it's n squared. So audition, or the law of addition, lets me reason about the fact that this will be an order n squared algorithm.
+209	34:50	Second one I'm going to use, it's called the law of multiplication. And this says, when I have nested statements, or nested loops,
+210	35:00	I need to reason about those. And in that case, what I'm going to argue, or not argue, state is that the order of growth here is a multiplication. That is,
+211	35:10	when I have nested things, I figure out what's the order of growth of the inner part, what's the order of growth of the outer part, and I'm going to multiply, yeah, try again. I'm going to multiply together
+212	35:20	those orders of growth to get the overall order of growth. If you think about it, it makes sense. Look at my little example here. It's a trivial little example, but I'm looping for i
+213	35:30	from 0 up to n. For every value of i, I'm looping for j from 0 up to n, and I'm printing out a. On the fawns, I'm saying a
+214	35:40	a lot. Oh, come on, at least throw something at me when it's that bad, right? Want to make sure you're still awake? OK, you get the idea. But what I want to show you here is,
+215	35:50	notice the order of growth. That's order n, right? I'm doing that n times, but I'm doing that for each value of i. The outer
+216	36:00	piece here loops also n times. For each value of i, I'm doing order n things, so I'm doing order of n times order of n steps.
+217	36:10	And by that law, that is the same of order of n times n or n squared. So this is a quadratic expression.
+218	36:20	You're going to see that a lot. Dested loops typically have that kind of behavior. Not always, but typically have that kind of behavior. So what you're
+219	36:30	going to see is there's a set of complexity classes, and we're about to start filling these in. Order one is constant. It says the amount of time it takes doesn't depend on the
+220	36:40	size of the problem. These are really rare that you get. They tend to be trivial pieces of code, but they're valuable. Log n reflects logarithmic
+221	36:50	runtime. You can sort of read the rest of them. These are the kinds of things we're going to deal with. We are going to see examples here, here, and here. And later on, we'll come back
+222	37:00	and see these, which are really nice examples to have. Just to remind you why these orders of growth matter. Sorry, that's just reminding you and what they look like, we've already done that.
+223	37:10	Here's the difference between constant log linear, log linear squared, and exponential. When n is equal to 10, 100, 1
+224	37:20	,000, or a million. I know you know this, but I want to drive home the difference. Something that's constant is wonderful. No matter how big the problem is,
+225	37:30	it takes the same amount of time. Something that is log is pretty nice. It increases the size of the problem by 10. it increases by a factor of 2. From
+226	37:40	another 10, it only increases by a factor of another 50%. It only increases a little bit. That's a gorgeous kind of problem to have. Linear, not so bad. I go from 10 to 100 to 1
+227	37:50	,000 to a million. You can see log linear is not bad either, right? A factor of 10 increase here is only a factor of 20 increase there. A factor of 10
+228	38:00	increase there is only a factor of 30 increase there. So log linear doesn't grow that badly. But look at the difference between n squared and 2 to the
+229	38:10	n. I actually did think of printing this out. By the way, Python will compute this, but it was taken pages and pages and pages. I didn't want to do it. You get the point.
+230	38:20	Exponential, always much worse, always much worse than a quadratic or a power expression. And you really see the difference here, okay?
+231	38:30	All right. The reason I put this up is as you design algorithms, your goal is to be as high up in this listing as
+232	38:40	you can. The closer you are to the top of this list, the better off you are. If you have a solution that's down here, bring a sleeping bag and some coffee. You're going to be
+233	38:50	there for a while, right? You really want to try and avoid that if you can. So now what we want to do both for the rest of today, the last 15 minutes, and
+234	39:00	then next week, you start identifying common algorithms and what is their complexity. And as I said to you way back at the beginning of this
+235	39:10	lecture, which I'm sure you remember, it's not just to be able to identify the complexity. I want you to see how choices in algorithm design are going to lead to particular kinds
+236	39:20	of consequences in terms of what this is going to cost you. That's your goal here. All right. You've already seen some examples. I'm going to do one more here, but simple iterative
+237	39:30	loop algorithms are typically linear. Here's another version of searching. Imagine I have an unsorted list, arbitrary order. Here's another way
+238	39:40	of doing the linear search. Looks a little bit faster. I'm going to set a flag initially to false. And then I'm going to loop for i from 0 up to
+239	39:50	the length of l. I'm going to use that to index into the list, pull out each element of the list in turn and check to see is it the thing I'm looking for. As soon as I find it,
+240	40:00	I'm going to send, sorry, set the flag to true, okay? So that when I return out of the loop, I can just return found. And if I found it, it'll be true. If I
+241	40:10	never found it, found will still be false and I'll return it. We could count the operations here, but you've already seen examples of doing that. This
+242	40:20	is linear because I'm looping n times if n is the length of the list over there, and the number of things I do inside the loop is constant.
+243	40:30	Now you might say, wait a minute, this is really brain damaged or if you're being more politically correct, computationally challenged. Okay, in the sense of once I found it,
+244	40:40	why bother looking at the rest of the list? So in fact, I could just return true right here. Does that change the order of growth
+245	40:50	of this algorithm? No. Changes the average time. I'm going to stop faster. But remember, the order of growth captures
+246	41:00	what's the worst -case behavior. And the worst -case behavior is the element's not in the list. I got to look at everything. So this will be an example of a linear algorithm.
+247	41:10	And you can see I'm looping length of l times over the loop inside of there. It's taking the order 1 to test it. So it's order n.
+248	41:20	And if I were to actually count it, there's the expression. It's 1 plus 4n plus 1, which is 4n plus 2, which by my rules says I don't care about the additive constant. I only care about the dominant term.
+249	41:30	And I don't care about that multiplicative constant. It's order n. In the example of a template, you're going to see a lot.
+250	41:40	Now, order n, where n is the length of the list. and I need to specify that. That's the thing I'm after. If you think about it, I cheated. Sorry, I never cheat.
+251	41:50	I'm tenured. I never cheat. I just mislead you badly. Not a chance. How do I know that
+252	42:00	accessing an element of the list takes constant time? I made an assumption about that. And this is a reasonable thing to ask about. Both, what am I assuming
+253	42:10	about the constant operations, And how do I know that's actually true? Well, it gives me a chance to point out something that Python does very effectively, not all languages do. But
+254	42:20	think about a list. Suppose I've got a list that's all integers. I'm going to need some amount of memory to represent each integer. So if a byte is eight bits, I might reserve four bytes or 32
+255	42:30	bits to cover any reasonable -sized integer. When I represent a list, I could simply have each of them in turn. So what do I need to know? I'm going to allocate out a
+256	42:40	particular length, say, 4 bytes, 32 bits, 32 sequential elements of memory to represent each integer. And then I just need to know, where's the
+257	42:50	first part of the list? What's the address and memory of the first part of the list? And to get to the i -th element, I take that base, plus 4 bytes times i. And
+258	43:00	I can go straight to this point without having to walk down the list. That's nice. It says, in fact, I can get to any element of memory,
+259	43:10	sorry, any element of the list in constant time. OK, now what if the things I'm representing aren't integers? They're arbitrary things, and they take up a big
+260	43:20	chunk of space. Well, if the list is heterogeneous, we use a nice technique called indirection. And that simply says we again have a list. We know the address of
+261	43:30	this point. We know the address, therefore, of the i -th element of this list. But inside of here, we don't store the actual value. We store a pointer to where
+262	43:40	it is in memory, which is what these things are indicating. So they can be arbitrary size, but again I can get to any element in constant time, which is exactly what I want. So that's
+263	43:50	great. Okay, now suppose I tell you that the list is sorted. It's in increasing order. I can be more clever about my algorithm
+264	44:00	because now as I loop through it, I can say if it's the thing I'm looking for, just return true. If the element of the list is bigger than the thing I'm looking for,
+265	44:10	I'm done. I don't need to look at the rest of the list because I know it can't be there because it's ordered or sorted. I can just return false. If I get all the way through the loop, I can return false. So
+266	44:20	I only have to look until I get to a point where the thing in the list is bigger than what I'm looking for. It's the order of growth here. Again, the average time behavior will
+267	44:30	be faster. But the order of growth is I've got to do order of length of the list to go through the loop, order of one to do the test, and in the worst case, again,
+268	44:40	I still have to go through the entire list. So the order of growth here is the same. It is again linear in the length of the list, even though the runtime will be different depending on
+269	44:50	whether it's sorted or not. I want you to hold on to that idea because we're going to come back to the sorted list next week to see that there actually are much more efficient ways to use the fact
+270	45:00	that a list is sorted to do the search. But both of these versions, same order growth, order n. OK, so lurching
+271	45:10	through a list. Right, sorry. Searching through a list in sequence is linear because of that loop. There are other things that have a similar flavor. And I'm going to do these quickly to get to the last
+272	45:20	example. Imagine I give you a string of characters that are all assumed to be composed of decimal digits. I just want to add them all up. This is also linear
+273	45:30	because there's the loop. I'm going to loop over the characters in the string. I'm going to cast them into integers, add them in, and return the value. This is linear in the length
+274	45:40	of the input S. Notice the pattern, that loop, that iterative loop. It's got that linear behavior because inside of the loop, constant number of things that I'm
+275	45:50	executing. We already looked at fact iter, same idea. There's the loop. I'm going to do that n times is inside the loop a constant amount of things.
+276	46:00	So looping around it is order n. There's the actual expression, but again, the pattern I want you to see here is that this is order n.
+277	46:10	OK, last example for today. I know you're all secretly looking at your watches. Standard loops, typically linear.
+278	46:20	What about nested loops? What about loops that have loops inside of them? How long do they take? And I want to show you a couple of examples, and mostly I want
+279	46:30	to show you how to reason about them. Suppose I gave you two lists composed of integers, and I want to know, is the first list a subset of the second list?
+280	46:40	Code's in the handle, by the way, if you want to go run it, but basically the simple idea would be, I'm going to loop over every element in the first list, and for each one of those,
+281	46:50	I want to say, is it in the second list? So I'll use the same kind of trick. I'll set up a flag that's initially false, and then I'm going to loop over everything in the second list, and if
+282	47:00	that thing is equal to the thing I'm looking for, I'll set match to true and break out of the loop, the inner loop. If I get all the way through the second list and I haven't found the thing
+283	47:10	I'm looking for, when I break out or come out of this loop, matched in that case will still be false and I'll return false. But if up here I found something
+284	47:20	that matched, match will be true, I break out of it, It's not false, therefore, I return true. I want you to look at the code. You should be able to look at this and
+285	47:30	realize what it's doing. For each element in the first list, I walk through the second list to say, is that element there? If it is, I return true. If that's true for all of the elements in the first list,
+286	47:40	I return true overall. Okay, order of growth. Outer loop, this loop, I'm going to
+287	47:50	execute the length of L1 times. I've got to walk down that first list. If I call that n, it's going to take that n times over the outer loop.
+288	48:00	But what about in here? All of the earlier examples, we had a constant number of operations inside of the loop. Here we don't. We've
+289	48:10	got another loop that's looping over, in principle, all the elements of the second list. So, each iteration is going to execute the inner loop
+290	48:20	up to length of L2 times, where inside of this inner loop, there is a constant number of operations. Ah, nice.
+291	48:30	That's the multiplicative law of orders of growth. It says, if this is order length L1, and we're going to do that then, order length of L2 times, the order growth is
+292	48:40	a product. And the most common, or the worst case behavior, is going to be when the lists are of the same length and none of the elements of L1 or in L2.
+293	48:50	And in that case, we're going to get something that's order n squared, quadratic, where n is the length of the list in terms of number of operations.
+294	49:00	I don't really care about subsets. I've got one more example. We could similarly do intersection. I want to say, what is the intersection of
+295	49:10	two lists? What elements are in both list 1 and list 2? Same basic idea. Here I've got a pair of nested loops. I'm looping over everything in L1. For that, I'm looping
+296	49:20	over everything in L2. And if they are the same, I'm going to put that into my temporary variable. Once I've done that, I need to clean things up. So I'm
+297	49:30	going to write another loop that sets up an internal variable and then runs through everything in the list I accumulated, making sure that it's not already there. And as long as it isn't, I'm going to put it into the
+298	49:40	result and return it. I did it quickly. You can look through it. You'll see it does the right thing. What I want you to see is what's the order of growth. I need to look at this piece, then
+299	49:50	I need to look at that piece. This piece, well, it's order length L1 to do the outer loop. For each version of
+300	50:00	E1, I've got to do order of length L2 things inside to accumulate them. So, that's quadratic. What about the second loop?
+301	50:10	Well, this one is a little more subtle. I'm only looping over temp, which is at most going to be length L1 long.
+302	50:20	But I'm checking to see is that element in a list. And it depends on the implementation, but typically
+303	50:30	that's going to take up to the length of the list to do it. I've got to look to see is it there or not. And so that inner loop, if we assume the lists are the same size, is also going to take potentially up
+304	50:40	to length L1 steps. And so this is, again, quadratic. It's actually two quadratics. One for the first nested loop, one for the second one, because there's
+305	50:50	an implicit second loop right there. But overall, it's quadratic. So what you see in general, this is a really dumb way to compute n
+306	51:00	squared. When you have nested loops, typically it's going to be quadratic behavior. And so what we've done then is we started to build up examples.
+307	51:10	You've now seen simple looping mechanisms, simple iterative mechanisms, nested loops. They tend to naturally give rise to linear and quadratic complexity. And next time we're
+308	51:20	going to start looking at more interesting classes. And we'll see you next time.

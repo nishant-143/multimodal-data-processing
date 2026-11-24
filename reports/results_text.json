@@ -1,0 +1,223 @@
+{
+ "zipf_heaps": {
+  "spoken (transcripts)": {
+   "tokens": 23477,
+   "zipf_s": 1.218276400986929,
+   "heaps_K": 2.0047239311376854,
+   "heaps_beta": 0.7151316055851598,
+   "ttr_equal_len": 0.15697335148803734,
+   "vocab": 1704
+  },
+  "written (slides)": {
+   "tokens": 5141,
+   "zipf_s": 0.9068618222724103,
+   "heaps_K": 1.7153392533236111,
+   "heaps_beta": 0.7723340045716942,
+   "ttr_equal_len": 0.21065940478506126,
+   "vocab": 1083
+  }
+ },
+ "bpe_splits": {
+  "computation": {
+   "bpe_course": [
+    "compu",
+    "tation"
+   ],
+   "gpt_cl100k": [
+    " computation"
+   ]
+  },
+  "imperative": {
+   "bpe_course": [
+    "imp",
+    "er",
+    "ative"
+   ],
+   "gpt_cl100k": [
+    " imperative"
+   ]
+  },
+  "declarative": {
+   "bpe_course": [
+    "d",
+    "ec",
+    "lar",
+    "ative"
+   ],
+   "gpt_cl100k": [
+    " declar",
+    "ative"
+   ]
+  },
+  "polymorphism": {
+   "bpe_course": [
+    "p",
+    "ol",
+    "y",
+    "m",
+    "or",
+    "p",
+    "hi",
+    "s",
+    "m"
+   ],
+   "gpt_cl100k": [
+    " polym",
+    "orphism"
+   ]
+  },
+  "inheritance": {
+   "bpe_course": [
+    "in",
+    "h",
+    "er",
+    "it",
+    "an",
+    "ce"
+   ],
+   "gpt_cl100k": [
+    " inheritance"
+   ]
+  },
+  "iteratively": {
+   "bpe_course": [
+    "i",
+    "ter",
+    "ati",
+    "v",
+    "e",
+    "ly"
+   ],
+   "gpt_cl100k": [
+    " iter",
+    "atively"
+   ]
+  },
+  "algorithm": {
+   "bpe_course": [
+    "algorithm"
+   ],
+   "gpt_cl100k": [
+    " algorithm"
+   ]
+  },
+  "efficiently": {
+   "bpe_course": [
+    "effici",
+    "ent",
+    "ly"
+   ],
+   "gpt_cl100k": [
+    " efficiently"
+   ]
+  },
+  "getattr": {
+   "bpe_course": [
+    "ge",
+    "t",
+    "at",
+    "t",
+    "r"
+   ],
+   "gpt_cl100k": [
+    " getattr"
+   ]
+  },
+  "isinstance": {
+   "bpe_course": [
+    "i",
+    "s",
+    "instance"
+   ],
+   "gpt_cl100k": [
+    " isinstance"
+   ]
+  }
+ },
+ "morphology": {
+  "computations": {
+   "porter": "comput",
+   "lemma": "computation"
+  },
+  "computing": {
+   "porter": "comput",
+   "lemma": "compute"
+  },
+  "programs": {
+   "porter": "program",
+   "lemma": "program"
+  },
+  "studies": {
+   "porter": "studi",
+   "lemma": "study"
+  },
+  "better": {
+   "porter": "better",
+   "lemma": "better"
+  },
+  "was": {
+   "porter": "wa",
+   "lemma": "be"
+  },
+  "classes": {
+   "porter": "class",
+   "lemma": "class"
+  },
+  "running": {
+   "porter": "run",
+   "lemma": "run"
+  }
+ },
+ "lm_perplexity": {
+  "lec01_what_is_computation": {
+   "laplace": 158.4329712863707,
+   "addk": 81.07201443918797,
+   "kn": 57.76416080353352
+  },
+  "lec08_object_oriented_programming": {
+   "laplace": 179.06176030244995,
+   "addk": 86.63105894084099,
+   "kn": 59.65679838737793
+  },
+  "lec10_program_efficiency": {
+   "laplace": 172.45651123792905,
+   "addk": 98.80520809706834,
+   "kn": 68.30548822680413
+  }
+ },
+ "bpe_merges": 800,
+ "search": [
+  {
+   "method": "bm25",
+   "slides_indexed": false,
+   "MRR": 0.6030266343825667,
+   "hit1": 0.5084745762711864,
+   "hit5": 0.7627118644067796,
+   "n": 59
+  },
+  {
+   "method": "bm25",
+   "slides_indexed": true,
+   "MRR": 0.896045197740113,
+   "hit1": 0.847457627118644,
+   "hit5": 0.9661016949152542,
+   "n": 59
+  },
+  {
+   "method": "tfidf",
+   "slides_indexed": false,
+   "MRR": 0.5931261770244821,
+   "hit1": 0.4915254237288136,
+   "hit5": 0.7796610169491526,
+   "n": 59
+  },
+  {
+   "method": "tfidf",
+   "slides_indexed": true,
+   "MRR": 0.8267419962335216,
+   "hit1": 0.7457627118644068,
+   "hit5": 0.9491525423728814,
+   "n": 59
+  }
+ ]
+}

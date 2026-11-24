@@ -1,0 +1,11 @@
+{
+ "kappa_exact": 0.7382705355853905,
+ "pos_A": 45,
+ "pos_B": 54,
+ "agree_pos_within_1": {
+  "A_in_B": 1.0,
+  "B_in_A": 0.8888888888888888
+ },
+ "AP_of_annotatorB_vs_A": 0.649091949091949,
+ "percent_agreement": 0.918918918918919
+}

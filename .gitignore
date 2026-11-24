@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+data/raw/*.mp4
+data/processed/
+data/models/
+presentation/node_modules/
+reports/contact/
+.DS_Store

@@ -1,0 +1,18 @@
+{
+ "pitch_agreement_within_5pct": 0.8822513697492944,
+ "pitch_octave_errors": 0.04682052133488295,
+ "mfcc_max_abs_diff_vs_librosa": 5.036377967826411e-05,
+ "mfcc_rel_diff": 1.7242562688813644e-07,
+ "smart_speed_minutes": {
+  "original": 43.09855833333334,
+  "pauses trimmed": 29.496728125,
+  "+ 1.3x WSOLA": 22.689790625
+ },
+ "ola_reconstruction_snr_db": 60.70538024932604,
+ "pitch_after_speedup_hz": {
+  "original": 220.19186124674974,
+  "wsola": 219.98798694363168,
+  "naive": 275.5113422016842
+ },
+ "n_pauses_lec01": 1035
+}
