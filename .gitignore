@@ -7,3 +7,4 @@ data/models/
 presentation/node_modules/
 reports/contact/
 .DS_Store
+/presentation/
